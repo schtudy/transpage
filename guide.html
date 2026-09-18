@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>사용법 – 담다</title>
+<meta name="description" content="담다로 웹페이지를 HTML 파일로 저장하는 세 가지 방법과 모바일 저장 버튼 설정법, 변환 옵션을 안내합니다.">
+<link rel="canonical" href="https://YOUR-DOMAIN.pages.dev/guide.html">
+<meta property="og:type" content="article"><meta property="og:site_name" content="담다">
+<meta property="og:title" content="사용법 – 담다"><meta property="og:description" content="담다로 웹페이지를 HTML 파일로 저장하는 세 가지 방법과 모바일 저장 버튼 설정법, 변환 옵션을 안내합니다."><meta property="og:url" content="https://YOUR-DOMAIN.pages.dev/guide.html">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+<!-- 애드센스: 승인 코드 발급 후 아래 주석 해제 -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0000000000000000" crossorigin="anonymous"></script> -->
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="./">담다<small>웹페이지 HTML 저장</small></a>
+<nav class="nav" aria-label="주요 메뉴">
+<a href="./">변환하기</a>
+<a href="guide.html" aria-current="page">사용법</a>
+<a href="about.html">소개</a>
+<a href="privacy.html">개인정보처리방침</a>
+</nav></div></header>
+<main class="wrap"><article class="prose">
+<h1>사용법</h1>
+<p class="updated">최종 수정 2026년 9월 18일</p>
+<p>담다는 웹페이지를 하나의 .html 파일로 저장하는 도구입니다. 컴퓨터의 "다른 이름으로 저장" 기능을 휴대폰에서도 쓸 수 있게 만든 것이라고 생각하면 됩니다. 상황에 따라 세 가지 방법 중 하나를 고르세요.</p>
+
+<h2>어떤 방법을 써야 하나요?</h2>
+<table>
+<tr><th>상황</th><th>추천 방법</th></tr>
+<tr><td>뉴스, 블로그, 공지사항처럼 누구나 볼 수 있는 페이지</td><td>주소로 가져오기</td></tr>
+<tr><td>학생부·성적 조회, 신청 내역처럼 로그인 후에만 보이는 페이지</td><td>저장 버튼</td></tr>
+<tr><td>이미 HTML 코드나 파일을 가지고 있을 때</td><td>붙여넣기 · 파일</td></tr>
+</table>
+
+<h2>1. 주소로 가져오기</h2>
+<p>변환하기 화면의 입력칸에 주소를 붙여넣고 <b>가져오기</b>를 누릅니다. https://를 빼고 입력해도 자동으로 붙습니다. 가져온 페이지는 바로 아래 미리보기에 표시되며, 파일 이름을 바꾼 뒤 <b>HTML 파일 저장</b>을 누르면 됩니다.</p>
+<p>이 방식은 담다의 서버가 대신 페이지를 열어 받아오는 구조입니다. 그래서 로그인 정보가 필요한 페이지, 해외 접속을 막아 둔 페이지, 자동 접속을 차단한 페이지는 가져올 수 없습니다. 이때는 저장 버튼을 이용하세요.</p>
+
+<h2>2. 저장 버튼 (로그인된 페이지용)</h2>
+<p>저장 버튼은 즐겨찾기에 넣어 두는 작은 코드입니다. 저장하고 싶은 페이지를 연 상태에서 누르면, 그 페이지 안에서 곧바로 화면 내용을 모아 .html 파일로 내려받습니다. 문서가 담다 서버를 거치지 않기 때문에 로그인이 필요한 개인 문서도 안전하게 저장할 수 있습니다.</p>
+<h3>저장 버튼이 하는 일</h3>
+<ul>
+<li>입력칸에 적힌 값과 체크 상태를 파일에 함께 남깁니다. (비밀번호 칸은 제외)</li>
+<li>같은 사이트 안에서 불러온 프레임(iframe) 내용을 파일 안에 포함합니다.</li>
+<li>읽을 수 있는 스타일시트를 파일 안에 넣어, 인터넷 연결 없이도 모양이 최대한 유지되게 합니다.</li>
+<li>화면을 바꾸는 스크립트는 빼고 저장합니다.</li>
+</ul>
+<h3>추가 방법</h3>
+<p>안드로이드 크롬: 변환하기 화면에서 <b>저장 버튼 코드 복사</b> → 아무 페이지나 즐겨찾기 추가 → 즐겨찾기 수정에서 이름은 "담다저장", 주소는 복사한 코드로 바꿉니다. 사용할 때는 주소창에 "담다저장"을 입력한 뒤 뜨는 즐겨찾기를 누릅니다.</p>
+<p>아이폰 사파리: 코드를 복사한 뒤 아무 페이지나 북마크하고, 북마크 편집에서 주소를 복사한 코드로 바꿉니다. 사용할 때는 북마크 목록에서 누르면 됩니다.</p>
+<p>일부 사이트는 보안 설정으로 즐겨찾기 코드 실행을 막아 두기도 합니다. 이 경우 브라우저 메뉴의 "페이지 저장"이나 "인쇄 → PDF로 저장"을 함께 활용해 보세요.</p>
+
+<h2>3. 붙여넣기 · 파일</h2>
+<p>HTML 코드를 붙여넣거나 .html 파일을 선택한 뒤 <b>변환하기</b>를 누릅니다. 원본 주소를 함께 적어 두면 상대 경로로 된 이미지와 스타일이 원본 주소 기준으로 바뀌어 깨지지 않습니다.</p>
+
+<h2>변환 옵션</h2>
+<ul>
+<li><b>스크립트 제거</b>: 광고, 팝업, 자동 이동 등 저장 파일에 필요 없는 동작을 없앱니다. 스크립트로 내용을 그리는 페이지라면 끄고 다시 시도하세요.</li>
+<li><b>링크·이미지 경로 유지</b>: 상대 경로를 원본 주소 기준 절대 경로로 바꿉니다.</li>
+<li><b>A4 인쇄 여백 적용</b>: 인쇄할 때 A4 용지와 적당한 여백을 쓰고, 배경색이 빠지지 않게 합니다.</li>
+</ul>
+
+<h2>저장한 파일 열기와 인쇄</h2>
+<p>안드로이드는 보통 다운로드 폴더, 아이폰은 파일 앱의 다운로드 폴더에 저장됩니다. 파일을 누르면 브라우저에서 열립니다. 인쇄가 필요하면 미리보기의 <b>인쇄 · PDF</b> 버튼을 누르고, 프린터 대신 "PDF로 저장"을 고르면 PDF 파일로도 보관할 수 있습니다.</p>
+
+<h2>문제가 생겼을 때</h2>
+<ul>
+<li>"원본 사이트가 오류를 반환했습니다": 사이트가 자동 접속을 막았거나 로그인이 필요한 경우입니다. 저장 버튼을 쓰세요.</li>
+<li>글자가 깨져 보임: 파일은 UTF-8로 저장됩니다. 오래된 뷰어라면 브라우저로 열어 보세요.</li>
+<li>이미지가 안 보임: 원본 사이트가 외부 접근을 막은 이미지는 원본 사이트에 로그인한 상태에서만 보일 수 있습니다.</li>
+</ul>
+</article></main>
+<footer class="site-footer"><div class="wrap">
+<nav aria-label="하단 메뉴"><a href="about.html">소개</a><a href="guide.html">사용법</a><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a><a href="mailto:contact@YOUR-DOMAIN.com">문의</a></nav>
+<p>© 2026 담다. 변환은 사용자의 브라우저 안에서 이루어지며, 변환한 문서는 서버에 저장되지 않습니다.</p>
+</div></footer>
+</body>
+</html>

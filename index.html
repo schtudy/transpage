@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>담다 – 웹페이지를 HTML 파일로 저장 (모바일 지원)</title>
+<meta name="description" content="휴대폰에서도 보고 있는 웹페이지를 .html 파일로 저장하세요. 주소 입력, HTML 붙여넣기, 로그인된 페이지용 저장 버튼까지. 설치 없이 무료로 사용할 수 있습니다.">
+<link rel="canonical" href="https://YOUR-DOMAIN.pages.dev/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="담다">
+<meta property="og:title" content="담다 – 웹페이지를 HTML 파일로 저장">
+<meta property="og:description" content="모바일에서도 웹페이지를 .html 파일로. 미리보기와 인쇄까지 한 번에.">
+<meta property="og:url" content="https://YOUR-DOMAIN.pages.dev/"><meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="style.css">
+<!-- 애드센스: 승인 코드 발급 후 아래 주석 해제 -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0000000000000000" crossorigin="anonymous"></script> -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"담다","url":"https://YOUR-DOMAIN.pages.dev/","applicationCategory":"UtilitiesApplication","operatingSystem":"Android, iOS, Windows, macOS","inLanguage":"ko","offers":{"@type":"Offer","price":"0","priceCurrency":"KRW"},"description":"웹페이지를 HTML 파일로 저장하고 미리보기·인쇄하는 무료 도구"},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"휴대폰에서 웹페이지를 HTML로 저장할 수 있나요?","acceptedAnswer":{"@type":"Answer","text":"네. 주소를 입력하거나, 로그인된 페이지라면 저장 버튼(북마크)을 눌러 .html 파일로 저장할 수 있습니다."}},
+{"@type":"Question","name":"로그인해야 보이는 페이지도 저장되나요?","acceptedAnswer":{"@type":"Answer","text":"주소 입력 방식으로는 불가능합니다. 해당 페이지를 연 상태에서 저장 버튼을 누르면 화면에 보이는 그대로 저장됩니다."}},
+{"@type":"Question","name":"변환한 내용이 서버에 남나요?","acceptedAnswer":{"@type":"Answer","text":"아니요. 변환과 미리보기는 브라우저 안에서만 이루어지며 결과물은 저장하지 않습니다."}}]}
+]}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="./">담다<small>웹페이지 HTML 저장</small></a>
+<nav class="nav" aria-label="주요 메뉴">
+<a href="./" aria-current="page">변환하기</a>
+<a href="guide.html">사용법</a>
+<a href="about.html">소개</a>
+<a href="privacy.html">개인정보처리방침</a>
+</nav></div></header>
+<main class="wrap">
+
+<section class="hero">
+  <div>
+    <h1>보고 있는 웹페이지,<br>그대로 .html 파일로.</h1>
+    <p>컴퓨터 없이 휴대폰만으로 웹페이지를 HTML 파일로 저장하고, 저장 전에 미리 보고, 바로 인쇄까지 할 수 있습니다. 제출 서류나 조회 화면을 보관할 때 쓰세요.</p>
+  </div>
+  <div class="paper" aria-hidden="true">
+    <table><tr><th>문서</th><td>조회 결과</td></tr><tr><th>형식</th><td>page.html</td></tr><tr><th>상태</th><td>원본과 동일</td></tr></table>
+    <div class="bar"></div><div class="bar s"></div><div class="bar"></div>
+    <span class="stamp">저장됨</span>
+  </div>
+</section>
+
+<section class="tool" id="tool" aria-label="HTML 변환 도구">
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t-url" aria-controls="p-url" aria-selected="true">주소로 가져오기</button>
+    <button class="tab" role="tab" id="t-paste" aria-controls="p-paste" aria-selected="false">붙여넣기 · 파일</button>
+  </div>
+
+  <div class="panel" id="p-url" role="tabpanel" aria-labelledby="t-url">
+    <form id="url-form" novalidate>
+      <label class="field"><span>웹페이지 주소</span>
+        <div class="row">
+          <input type="url" id="url-input" inputmode="url" autocomplete="url" placeholder="https://example.com/page" required>
+          <button class="btn btn--primary" id="url-btn" type="submit">가져오기</button>
+        </div>
+      </label>
+      <p class="hint">누구나 볼 수 있는 공개 페이지만 가져올 수 있습니다. 로그인해야 보이는 페이지는 <a href="#bookmarklet">저장 버튼</a>을 쓰세요.</p>
+    </form>
+  </div>
+
+  <div class="panel" id="p-paste" role="tabpanel" aria-labelledby="t-paste" hidden>
+    <form id="paste-form">
+      <label class="field"><span>HTML 코드</span>
+        <textarea id="paste-input" spellcheck="false" placeholder="&lt;html&gt; ... &lt;/html&gt;"></textarea>
+      </label>
+      <label class="field"><span>또는 파일 선택 (.html, .htm, .txt)</span>
+        <input type="file" id="file-input" accept=".html,.htm,.txt,text/html,text/plain">
+      </label>
+      <label class="field"><span>원본 주소 (선택)</span>
+        <input type="url" id="paste-base" placeholder="이미지·스타일 경로를 살릴 때 입력">
+      </label>
+      <div class="btn-row">
+        <button class="btn btn--primary" type="submit">변환하기</button>
+        <button class="btn" id="btn-sample" type="button">예시 문서로 해보기</button>
+      </div>
+    </form>
+  </div>
+
+  <fieldset class="opts" style="border:0;margin:0">
+    <legend class="sr-only" style="position:absolute;left:-9999px">변환 옵션</legend>
+    <label><input type="checkbox" id="opt-scripts" checked> 스크립트 제거</label>
+    <label><input type="checkbox" id="opt-abs" checked> 링크·이미지 경로 유지</label>
+    <label><input type="checkbox" id="opt-print"> A4 인쇄 여백 적용</label>
+  </fieldset>
+</section>
+<p class="status" id="status" role="status" aria-live="polite"></p>
+
+<section class="result" id="result" hidden aria-labelledby="result-title">
+  <h2 id="result-title">미리보기</h2>
+  <label class="field"><span>파일 이름</span><input type="text" id="filename"></label>
+  <div class="btn-row">
+    <button class="btn btn--blue" id="btn-download" type="button">HTML 파일 저장</button>
+    <button class="btn" id="btn-expand" type="button">크게 보기</button>
+    <button class="btn" id="btn-print" type="button">인쇄 · PDF</button>
+  </div>
+  <p class="meta" id="result-meta"></p>
+  <div class="preview-box" id="preview-box">
+    <button class="btn preview-close" id="btn-close" type="button">닫기</button>
+    <iframe class="preview-frame" id="preview" title="변환 결과 미리보기" sandbox="allow-same-origin allow-modals"></iframe>
+  </div>
+</section>
+
+<section class="callout" id="bookmarklet" aria-labelledby="bm-title">
+  <h2 id="bm-title">로그인한 페이지는 저장 버튼으로</h2>
+  <p>학생부 조회처럼 로그인 후에만 보이는 화면은 주소를 붙여넣어도 가져올 수 없습니다. 아래 버튼을 즐겨찾기에 한 번 추가해 두면, 그 화면에서 눌렀을 때 보이는 그대로 .html 파일로 저장됩니다.</p>
+  <div class="btn-row">
+    <a class="bm-link" id="bm-link" href="#">담다로 저장</a>
+    <button class="btn" id="bm-copy" type="button">저장 버튼 코드 복사</button>
+  </div>
+  <textarea id="bm-code" hidden readonly aria-label="저장 버튼 코드"></textarea>
+  <details class="how"><summary>안드로이드 크롬에서 추가하기</summary>
+    <ol><li>위의 <b>저장 버튼 코드 복사</b>를 누릅니다.</li><li>이 페이지를 즐겨찾기(☆)에 추가한 뒤 <b>수정</b>을 누릅니다.</li><li>이름을 <b>담다저장</b>으로, 주소 칸을 지우고 복사한 코드를 붙여넣어 저장합니다.</li><li>저장할 페이지에서 주소창에 <b>담다저장</b>을 입력하고, 목록에 뜬 즐겨찾기를 누릅니다.</li></ol>
+  </details>
+  <details class="how"><summary>아이폰 사파리에서 추가하기</summary>
+    <ol><li><b>저장 버튼 코드 복사</b>를 누릅니다.</li><li>공유 버튼 → <b>북마크 추가</b>로 이 페이지를 북마크합니다.</li><li>북마크 목록에서 <b>편집</b> → 방금 만든 북마크를 눌러 주소를 복사한 코드로 바꿉니다.</li><li>저장할 페이지에서 북마크 목록을 열고 해당 북마크를 누르면 파일 앱에 저장됩니다.</li></ol>
+  </details>
+  <details class="how"><summary>컴퓨터에서 추가하기</summary>
+    <ol><li>북마크바를 켭니다 (Ctrl/⌘ + Shift + B).</li><li><b>담다로 저장</b> 버튼을 북마크바로 끌어다 놓습니다.</li></ol>
+  </details>
+</section>
+
+<div class="ad-slot"><!-- 애드센스 광고 단위 --></div>
+
+<section class="section" aria-labelledby="how-title">
+  <h2 id="how-title">이렇게 동작합니다</h2>
+  <ol class="steps">
+    <li><h3>가져오기</h3><p>주소를 넣거나, HTML을 붙여넣거나, 저장 버튼으로 지금 화면을 담습니다.</p></li>
+    <li><h3>정리하기</h3><p>불필요한 스크립트를 빼고, 이미지와 스타일 경로를 원본 주소로 바꿔 깨지지 않게 합니다.</p></li>
+    <li><h3>확인하고 저장</h3><p>미리보기로 모양을 확인한 뒤 .html 파일로 저장하거나 바로 인쇄합니다.</p></li>
+  </ol>
+</section>
+
+<section class="section faq" aria-labelledby="faq-title">
+  <h2 id="faq-title">자주 묻는 질문</h2>
+  <details><summary>휴대폰에서 웹페이지를 HTML로 저장할 수 있나요?</summary><p>네. 주소를 입력하거나, 로그인된 페이지라면 저장 버튼(즐겨찾기)을 눌러 .html 파일로 저장할 수 있습니다. 안드로이드는 다운로드 폴더, 아이폰은 파일 앱에 저장됩니다.</p></details>
+  <details><summary>로그인해야 보이는 페이지도 저장되나요?</summary><p>주소 입력 방식은 로그인 정보가 전달되지 않아 불가능합니다. 해당 페이지를 연 상태에서 저장 버튼을 누르면 화면에 보이는 그대로 저장됩니다. 이 과정에서 로그인 정보나 문서 내용은 담다로 전송되지 않습니다.</p></details>
+  <details><summary>저장한 파일을 열었더니 모양이 조금 달라요.</summary><p>일부 사이트는 스크립트로 화면을 그리거나 외부 파일 접근을 막아 둡니다. "스크립트 제거"를 끄고 다시 변환하거나, 저장 버튼 방식을 이용해 보세요.</p></details>
+  <details><summary>변환한 내용이 서버에 남나요?</summary><p>아니요. 변환과 미리보기는 브라우저 안에서만 이루어지며 결과물을 저장하지 않습니다. 자세한 내용은 <a href="privacy.html">개인정보처리방침</a>을 참고하세요.</p></details>
+  <details><summary>PDF로도 저장할 수 있나요?</summary><p>미리보기의 "인쇄 · PDF"를 누른 뒤 프린터 대신 "PDF로 저장"을 선택하면 됩니다.</p></details>
+</section>
+
+</main>
+<footer class="site-footer"><div class="wrap">
+<nav aria-label="하단 메뉴"><a href="about.html">소개</a><a href="guide.html">사용법</a><a href="privacy.html">개인정보처리방침</a><a href="terms.html">이용약관</a><a href="mailto:contact@YOUR-DOMAIN.com">문의</a></nav>
+<p>© 2026 담다. 변환은 사용자의 브라우저 안에서 이루어지며, 변환한 문서는 서버에 저장되지 않습니다.</p>
+</div></footer>
+<script src="app.js" defer></script>
+</body>
+</html>
