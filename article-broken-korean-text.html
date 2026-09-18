@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>저장한 웹페이지 한글 깨짐 원인과 해결 (UTF-8, EUC-KR) – 담다</title>
+<meta name="description" content="저장한 웹페이지의 한글이 깨지는 원인인 문자 인코딩과 UTF-8·EUC-KR 차이, 해결 방법을 설명합니다.">
+<link rel="canonical" href="https://transhtml.pages.dev/article-broken-korean-text">
+<meta property="og:type" content="article"><meta property="og:site_name" content="담다">
+<meta property="og:title" content="저장한 웹페이지 한글 깨짐 원인과 해결 (UTF-8, EUC-KR) – 담다"><meta property="og:description" content="저장한 웹페이지의 한글이 깨지는 원인인 문자 인코딩과 UTF-8·EUC-KR 차이, 해결 방법을 설명합니다.">
+<meta property="og:url" content="https://transhtml.pages.dev/article-broken-korean-text"><meta property="og:image" content="https://transhtml.pages.dev/og.png"><meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1b2433">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "저장한 웹페이지 한글 깨짐 원인과 해결 (UTF-8, EUC-KR)", "description": "저장한 웹페이지의 한글이 깨지는 원인인 문자 인코딩과 UTF-8·EUC-KR 차이, 해결 방법을 설명합니다.", "inLanguage": "ko", "datePublished": "2026-09-18", "dateModified": "2026-09-18", "author": {"@type": "Organization", "name": "담다"}, "publisher": {"@type": "Organization", "name": "담다", "logo": {"@type": "ImageObject", "url": "https://transhtml.pages.dev/og.png"}}, "mainEntityOfPage": "https://transhtml.pages.dev/article-broken-korean-text", "image": "https://transhtml.pages.dev/og.png"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://transhtml.pages.dev/"}, {"@type": "ListItem", "position": 2, "name": "가이드", "item": "https://transhtml.pages.dev/articles"}, {"@type": "ListItem", "position": 3, "name": "저장한 웹페이지 한글 깨짐 원인과 해결 (UTF-8, EUC-KR)", "item": "https://transhtml.pages.dev/article-broken-korean-text"}]}</script>
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="/">담다<small>웹페이지 HTML 저장</small></a>
+<nav class="nav" aria-label="주요 메뉴"><a href="/">변환하기</a><a href="/guide">사용법</a><a href="/articles" aria-current="page">가이드</a><a href="/about">소개</a></nav></div></header>
+<main class="wrap">
+<article class="prose">
+<p class="crumb"><a href="/">홈</a> › <a href="/articles">가이드</a></p>
+<h1>저장한 웹페이지 한글 깨짐 원인과 해결 (UTF-8, EUC-KR)</h1>
+<p class="updated">작성 2026.09.18 · 담다</p>
+<p>저장한 웹페이지를 열었더니 한글이 "ÇѱÛ"이나 "占쏙옙"처럼 깨져 보이는 경우가 있습니다. 대부분 <b>문자 인코딩</b>이 맞지 않아서 생기는 문제입니다. 원리를 알면 해결이 어렵지 않습니다.</p>
+<h2>문자 인코딩이란</h2>
+<p>컴퓨터는 글자를 숫자로 바꿔 저장합니다. 이때 어떤 규칙으로 바꿀지를 정한 것이 문자 인코딩입니다. 한국 웹사이트에서는 주로 두 가지를 씁니다.</p>
+<ul>
+<li><b>UTF-8</b>: 전 세계 문자를 모두 표현하는 국제 표준. 요즘 웹사이트 대부분이 사용합니다.</li>
+<li><b>EUC-KR</b>: 한글 전용 옛 규칙. 오래된 관공서, 학교, 쇼핑몰 사이트에 아직 남아 있습니다.</li>
+</ul>
+<p>EUC-KR로 저장된 파일을 UTF-8로 읽거나, 그 반대로 읽으면 글자가 깨집니다. 파일 자체가 망가진 것이 아니라 "읽는 규칙"이 틀린 것입니다.</p>
+<h2>깨짐을 막는 방법</h2>
+<h3>1. 저장할 때 UTF-8로 통일하기</h3>
+<p>담다는 원본 사이트의 인코딩을 자동으로 확인해 올바르게 읽은 뒤, 결과 파일을 항상 UTF-8로 저장합니다. 파일 안의 인코딩 선언도 UTF-8로 바꿔 넣기 때문에 어느 브라우저에서 열어도 한글이 깨지지 않습니다.</p>
+<h3>2. 이미 깨진 파일 고치기</h3>
+<p>컴퓨터 크롬에서는 과거에 인코딩 변경 메뉴가 있었지만 지금은 기본으로 제공하지 않습니다. 대신 파일을 메모장 같은 텍스트 편집기로 열어 "다른 이름으로 저장"에서 인코딩을 UTF-8로 바꾸는 방법이 있습니다. 또는 담다의 붙여넣기·파일 탭에서 파일을 불러와 다시 변환해 보세요.</p>
+<h2>인코딩이 원인이 아닐 때</h2>
+<ul>
+<li><b>네모(□)로 보임</b>: 글꼴이 없어서 생기는 문제입니다. 다른 브라우저에서 열어 보세요.</li>
+<li><b>일부 글자만 이상함</b>: 원본 페이지가 특수한 웹 글꼴로 글자를 그리는 경우입니다. 인터넷에 연결된 상태에서 열면 해결되기도 합니다.</li>
+<li><b>빈 화면</b>: 글자가 깨진 것이 아니라 내용이 저장되지 않은 것입니다. 로그인이 필요한 페이지라면 저장 버튼 방식을 사용하세요.</li>
+</ul>
+<p>정리하면, 한글 깨짐의 대부분은 인코딩 불일치이고, 저장 단계에서 UTF-8로 맞추면 예방할 수 있습니다.</p>
+
+<div class="ad-slot" aria-hidden="true"></div>
+<aside class="cta"><b>바로 해보기</b><p>휴대폰에서 웹페이지를 .html 파일로 저장해 보세요.</p><a class="btn btn--primary" href="/">담다로 변환하기</a></aside>
+<h2>다른 가이드</h2><ul><li><a href="/article-personal-docs-checklist">개인 서류를 온라인 도구로 저장할 때 체크리스트</a></li><li><a href="/article-why-damda">담다가 필요한 순간 – 휴대폰으로 웹페이지를 파일로 남겨야 할 때</a></li><li><a href="/article-security-design">담다의 보안 설계 – 문서가 서버로 가지 않는 이유</a></li><li><a href="/article-save-login-page">로그인이 필요한 페이지는 왜 주소로 저장이 안 될까</a></li></ul>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<nav aria-label="하단 메뉴"><a href="/about">소개</a><a href="/guide">사용법</a><a href="/articles">가이드</a><a href="/contact">문의</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a></nav>
+<p>공식 주소: <b>transhtml.pages.dev</b> · 저장 버튼 코드는 이 주소에서만 받으세요.</p>
+<p>© 2026 담다. 변환은 사용자의 브라우저 안에서 이루어지며, 변환한 문서는 서버에 저장되지 않습니다.</p>
+</div></footer>
+</body>
+</html>

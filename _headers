@@ -2,9 +2,13 @@
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Strict-Transport-Security: max-age=31536000
+
+/
+  Content-Security-Policy: default-src 'self'; script-src 'self'; connect-src 'self'; style-src 'self' 'unsafe-inline' https:; font-src 'self' https: data:; img-src * data: blob:; media-src * data: blob:; frame-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'
 
 /*.css
   Cache-Control: public, max-age=86400
 /*.js
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=3600

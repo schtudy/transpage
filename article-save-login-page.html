@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>로그인이 필요한 페이지는 왜 주소로 저장이 안 될까 – 담다</title>
+<meta name="description" content="로그인이 필요한 페이지나 스크립트로 그리는 페이지를 주소로 가져올 수 없는 이유와 저장 버튼·PDF를 이용한 해결 방법입니다.">
+<link rel="canonical" href="https://transhtml.pages.dev/article-save-login-page">
+<meta property="og:type" content="article"><meta property="og:site_name" content="담다">
+<meta property="og:title" content="로그인이 필요한 페이지는 왜 주소로 저장이 안 될까 – 담다"><meta property="og:description" content="로그인이 필요한 페이지나 스크립트로 그리는 페이지를 주소로 가져올 수 없는 이유와 저장 버튼·PDF를 이용한 해결 방법입니다.">
+<meta property="og:url" content="https://transhtml.pages.dev/article-save-login-page"><meta property="og:image" content="https://transhtml.pages.dev/og.png"><meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1b2433">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "로그인이 필요한 페이지는 왜 주소로 저장이 안 될까", "description": "로그인이 필요한 페이지나 스크립트로 그리는 페이지를 주소로 가져올 수 없는 이유와 저장 버튼·PDF를 이용한 해결 방법입니다.", "inLanguage": "ko", "datePublished": "2026-09-18", "dateModified": "2026-09-18", "author": {"@type": "Organization", "name": "담다"}, "publisher": {"@type": "Organization", "name": "담다", "logo": {"@type": "ImageObject", "url": "https://transhtml.pages.dev/og.png"}}, "mainEntityOfPage": "https://transhtml.pages.dev/article-save-login-page", "image": "https://transhtml.pages.dev/og.png"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://transhtml.pages.dev/"}, {"@type": "ListItem", "position": 2, "name": "가이드", "item": "https://transhtml.pages.dev/articles"}, {"@type": "ListItem", "position": 3, "name": "로그인이 필요한 페이지는 왜 주소로 저장이 안 될까", "item": "https://transhtml.pages.dev/article-save-login-page"}]}</script>
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="/">담다<small>웹페이지 HTML 저장</small></a>
+<nav class="nav" aria-label="주요 메뉴"><a href="/">변환하기</a><a href="/guide">사용법</a><a href="/articles" aria-current="page">가이드</a><a href="/about">소개</a></nav></div></header>
+<main class="wrap">
+<article class="prose">
+<p class="crumb"><a href="/">홈</a> › <a href="/articles">가이드</a></p>
+<h1>로그인이 필요한 페이지는 왜 주소로 저장이 안 될까</h1>
+<p class="updated">작성 2026.09.18 · 담다</p>
+<p>"주소만 넣으면 저장되는데, 왜 이 페이지는 안 되나요?" 담다에 가장 많이 들어오는 질문입니다. 로그인이 필요한 페이지는 주소로 가져올 수 없는 구조적인 이유가 있습니다. 원리를 알면 어떤 방법을 써야 하는지 바로 판단할 수 있습니다.</p>
+<h2>주소는 "문서"가 아니라 "위치"다</h2>
+<p>웹페이지 주소는 문서 자체가 아니라, 서버에 "이 위치의 내용을 보여 달라"고 요청하는 표지판에 가깝습니다. 서버는 요청한 사람이 누구인지 보고 그에 맞는 내용을 돌려줍니다. 로그인한 사람에게는 개인 정보를, 로그인하지 않은 사람에게는 로그인 화면을 보여 주는 식입니다.</p>
+<p>담다 서버가 주소로 페이지를 가져올 때는 로그인하지 않은 방문자로 요청합니다. 그래서 여러분이 보던 화면이 아니라 로그인 화면이나 빈 화면을 받게 됩니다.</p>
+<h2>화면을 스크립트로 그리는 페이지</h2>
+<p>요즘 많은 사이트는 처음에 뼈대만 보내고, 스크립트가 로그인 정보를 확인한 뒤 내용을 불러와 화면을 그립니다. 주소에 <code>#/</code>가 들어 있다면 이런 방식일 가능성이 높습니다. 이런 페이지를 외부에서 가져오면 "불러오는 중…" 표시만 계속 보이는 빈 껍데기가 저장됩니다.</p>
+<h2>그렇다면 서버가 대신 로그인하면 되지 않을까</h2>
+<p>기술적으로는 사용자의 로그인 정보나 인증서를 서버에 넘기면 가능할 수도 있습니다. 하지만 이는 개인정보를 제3자에게 통째로 맡기는 일이며, 많은 사이트의 이용 규정에도 어긋납니다. 담다는 이런 방식을 쓰지 않으며, 로그인 정보를 요구하는 비슷한 서비스도 피하는 것을 권합니다.</p>
+<h2>해결책: 이미 로그인된 화면에서 저장하기</h2>
+<p>로그인된 화면은 이미 여러분의 브라우저 안에 있습니다. 그렇다면 그 자리에서 저장하면 됩니다. 담다의 저장 버튼이 바로 이 방식입니다.</p>
+<ol>
+<li>담다 변환하기 화면에서 저장 버튼을 즐겨찾기에 등록합니다. (<a href="/guide">사용법</a> 참고)</li>
+<li>저장할 사이트에 평소처럼 로그인합니다.</li>
+<li>내용이 화면에 모두 나타날 때까지 기다립니다.</li>
+<li>즐겨찾기에서 저장 버튼을 누릅니다.</li>
+</ol>
+<p>이 방식은 로그인 정보나 문서를 어디에도 보내지 않고, 보이는 그대로를 기기에 저장합니다.</p>
+<h2>저장 버튼으로도 비어 보인다면</h2>
+<p>일부 사이트는 문서를 글자가 아닌 이미지나 캔버스(그림) 방식의 전용 뷰어로 보여 줍니다. 이 경우 화면에는 글자가 보여도 HTML 안에는 글자가 없어서, 저장한 파일이 비어 보일 수 있습니다. 이때는 브라우저의 인쇄 기능에서 "PDF로 저장"을 쓰는 것이 가장 확실합니다.</p>
+<h2>한눈에 정리</h2>
+<table><tr><th>페이지 종류</th><th>추천 방법</th></tr>
+<tr><td>누구나 볼 수 있는 페이지</td><td>주소로 가져오기</td></tr>
+<tr><td>로그인 후 보이는 페이지</td><td>저장 버튼</td></tr>
+<tr><td>전용 뷰어로 보이는 문서</td><td>인쇄 → PDF로 저장</td></tr></table>
+
+<div class="ad-slot" aria-hidden="true"></div>
+<aside class="cta"><b>바로 해보기</b><p>휴대폰에서 웹페이지를 .html 파일로 저장해 보세요.</p><a class="btn btn--primary" href="/">담다로 변환하기</a></aside>
+<h2>다른 가이드</h2><ul><li><a href="/article-submission-checklist">웹페이지 파일 제출 전 체크리스트 5단계</a></li><li><a href="/article-save-webpage-mobile">휴대폰에서 웹페이지를 HTML 파일로 저장하는 3가지 방법</a></li><li><a href="/article-html-mhtml-pdf">HTML, MHTML, PDF 차이 – 웹페이지 저장 형식 고르는 법</a></li><li><a href="/article-bookmarklet-safety">북마클릿이란? 즐겨찾기 코드를 안전하게 쓰는 5가지 원칙</a></li></ul>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<nav aria-label="하단 메뉴"><a href="/about">소개</a><a href="/guide">사용법</a><a href="/articles">가이드</a><a href="/contact">문의</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a></nav>
+<p>공식 주소: <b>transhtml.pages.dev</b> · 저장 버튼 코드는 이 주소에서만 받으세요.</p>
+<p>© 2026 담다. 변환은 사용자의 브라우저 안에서 이루어지며, 변환한 문서는 서버에 저장되지 않습니다.</p>
+</div></footer>
+</body>
+</html>

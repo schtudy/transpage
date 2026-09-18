@@ -119,3 +119,24 @@ details.how ol{padding-left:20px;margin:10px 0 4px}
   .nav{margin-left:0;width:100%}
 }
 @media print{.site-header,.site-footer,.ad-slot{display:none}}
+
+.callout.is-focus{outline:3px solid var(--stamp);outline-offset:4px}
+
+.code-box{margin-top:14px}
+.code-box[hidden],.preview-box[hidden]{display:none}
+.code-box textarea{min-height:60vh;margin-top:8px;white-space:pre;overflow:auto}
+
+/* ===== 가이드·카드 ===== */
+.cards{list-style:none;padding:0;margin:16px 0 0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card a{display:block;height:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;color:var(--ink);text-decoration:none}
+.card a:hover{border-color:var(--ink)}
+.card h2,.card h3{font-size:17px;margin:0 0 6px;letter-spacing:-.02em}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.crumb{font-size:13px;color:var(--muted);margin:28px 0 -24px}
+.crumb a{color:var(--muted)}
+.cta{margin:32px 0;padding:18px 20px;background:var(--blue-weak);border:1px solid #c6d2ee;border-radius:var(--radius)}
+.cta p{margin:4px 0 12px}
+.prose code{background:#eef1f4;padding:1px 5px;border-radius:4px;font-size:.92em}
+pre.code{background:#1b2433;color:#e8edf8;border-radius:6px;padding:12px;overflow:auto;max-height:240px;font-size:12px;line-height:1.5;white-space:pre-wrap;word-break:break-all}
+pre.code code{background:none;padding:0;color:inherit}
+@media (max-width:720px){.cards{grid-template-columns:1fr}}

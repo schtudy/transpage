@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://YOUR-DOMAIN.pages.dev/</loc><lastmod>2026-09-18</lastmod><priority>1.0</priority></url>
-  <url><loc>https://YOUR-DOMAIN.pages.dev/guide.html</loc><lastmod>2026-09-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://YOUR-DOMAIN.pages.dev/about.html</loc><lastmod>2026-09-18</lastmod><priority>0.6</priority></url>
-  <url><loc>https://YOUR-DOMAIN.pages.dev/privacy.html</loc><lastmod>2026-09-18</lastmod><priority>0.3</priority></url>
-  <url><loc>https://YOUR-DOMAIN.pages.dev/terms.html</loc><lastmod>2026-09-18</lastmod><priority>0.3</priority></url>
+  <url><loc>https://transhtml.pages.dev/</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://transhtml.pages.dev/articles</loc><lastmod>2026-09-18</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://transhtml.pages.dev/guide</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transhtml.pages.dev/article-save-webpage-mobile</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transhtml.pages.dev/article-html-mhtml-pdf</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transhtml.pages.dev/article-bookmarklet-safety</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transhtml.pages.dev/article-open-print-html</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transhtml.pages.dev/article-broken-korean-text</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transhtml.pages.dev/article-personal-docs-checklist</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transhtml.pages.dev/article-why-damda</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transhtml.pages.dev/article-security-design</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transhtml.pages.dev/article-save-login-page</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transhtml.pages.dev/article-submission-checklist</loc><lastmod>2026-09-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://transhtml.pages.dev/about</loc><lastmod>2026-09-18</lastmod><changefreq>yearly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://transhtml.pages.dev/contact</loc><lastmod>2026-09-18</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://transhtml.pages.dev/privacy</loc><lastmod>2026-09-18</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://transhtml.pages.dev/terms</loc><lastmod>2026-09-18</lastmod><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

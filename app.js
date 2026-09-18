@@ -158,7 +158,7 @@ function saveThisPage() {
       if (e.tagName === 'TEXTAREA') e.textContent = e.value;
       else if (e.tagName === 'SELECT') [...e.options].forEach(o => o.selected ? o.setAttribute('selected', '') : o.removeAttribute('selected'));
       else if (e.type === 'checkbox' || e.type === 'radio') e.checked ? e.setAttribute('checked', '') : e.removeAttribute('checked');
-      else if (e.type !== 'password') e.setAttribute('value', e.value);
+      else if (e.type !== 'password' && e.type !== 'hidden') e.setAttribute('value', e.value);
     });
     const frames = [...d.querySelectorAll('iframe')].map(f => {
       try { const x = f.contentDocument; return x ? '<!DOCTYPE html>' + x.documentElement.outerHTML : null; } catch (e) { return null; }
@@ -172,7 +172,8 @@ function saveThisPage() {
       } catch (e) {}
     });
     const c = d.documentElement.cloneNode(true);
-    c.querySelectorAll('script').forEach(e => e.remove());
+    c.querySelectorAll('script,input[type=hidden],meta[name*=csrf i],meta[name*=token i]').forEach(e => e.remove());
+    c.querySelectorAll('input[type=password]').forEach(e => e.removeAttribute('value'));
     c.querySelectorAll('link[rel~="stylesheet"]').forEach(l => { if (used.has(l.href)) l.remove(); });
     c.querySelectorAll('iframe').forEach((f, i) => { if (frames[i]) { f.removeAttribute('src'); f.setAttribute('srcdoc', frames[i]); } });
     const h = c.querySelector('head');
@@ -204,6 +205,27 @@ table{border-collapse:collapse;width:100%}th,td{border:1px solid #999;padding:6p
 <tr><td>영어</td><td>4</td><td>95</td><td>1</td></tr></table>
 <p onclick="alert(1)">※ 이 문서는 담다 사용법을 보여주기 위한 가상 예시입니다.</p></body></html>`;
 
+
+/* ========== detect ========== */
+// 로그인·스크립트로 화면을 그리는 페이지(빈 껍데기) 감지
+const LOGIN_SITES = /(^|\.)(neis\.go\.kr|gov\.kr|hometax\.go\.kr|kcue\.or\.kr|uway\.com|jinhakapply\.com)$/i;
+function shellReason(html, url) {
+  const u = new URL(url);
+  if (LOGIN_SITES.test(u.hostname)) return '로그인이 필요한 사이트입니다.';
+  if (/^#!?\//.test(u.hash)) return '주소에 #/ 가 있는 앱형 페이지라 화면이 스크립트로 그려집니다.';
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  doc.querySelectorAll('script,style,noscript').forEach(n => n.remove());
+  const text = (doc.body?.textContent || '').replace(/\s+/g, '');
+  if (text.length < 150) return '내용이 거의 없는 빈 화면만 받아졌습니다(로그인 또는 스크립트 필요).';
+  return '';
+}
+function guideToBookmarklet(reason) {
+  setStatus(el.status, `${reason} 이런 페이지는 주소로 가져올 수 없습니다. 해당 사이트에 로그인해 내용이 보이는 상태에서 "저장 버튼"을 누르세요.`, 'error');
+  const bm = $('#bookmarklet');
+  bm.classList.add('is-focus');
+  bm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 /* ========== main ========== */
 
 const state = { raw: '', baseUrl: '', html: '' };
@@ -225,6 +247,7 @@ function build() {
   renderPreview(el.frame, state.html);
   el.meta.textContent = `결과 ${formatBytes(new Blob([state.html]).size)}${state.baseUrl ? ' · 원본 ' + state.baseUrl : ''}`;
   el.result.hidden = false;
+  $('#code-view').value = state.html;
 }
 
 function load(raw, baseUrl) {
@@ -243,8 +266,12 @@ el.urlForm.addEventListener('submit', async e => {
   el.urlBtn.disabled = true;
   try {
     const url = normalizeUrl(el.url.value);
+    const pre = LOGIN_SITES.test(new URL(url).hostname) ? shellReason('', url) : '';
+    if (pre) return guideToBookmarklet(pre);
     setStatus(el.status, '페이지를 가져오는 중…');
     const { html, finalUrl } = await fetchPage(url);
+    const reason = shellReason(html, url);
+    if (reason) return guideToBookmarklet(reason);
     load(html, finalUrl);
   } catch (err) {
     setStatus(el.status, err.message + ' 로그인이 필요한 페이지는 아래 "저장 버튼"을 사용하세요.', 'error');
@@ -272,6 +299,9 @@ el.file.addEventListener('change', async () => {
   toast(`${f.name} 불러옴`);
 });
 
+el.opts[0].addEventListener('change', () => {
+  if (!el.opts[0].checked && !confirm('스크립트를 남기면 저장한 파일을 열 때 원본 사이트의 코드가 실행됩니다. 신뢰할 수 있는 페이지일 때만 해제하세요. 계속할까요?')) el.opts[0].checked = true;
+});
 el.opts.forEach(o => o.addEventListener('change', build));
 
 const btnDl = $('#btn-download');
@@ -288,7 +318,23 @@ $('#btn-close').addEventListener('click', () => setExpanded(el.frameBox, false))
 addEventListener('keydown', e => { if (e.key === 'Escape') setExpanded(el.frameBox, false); });
 $('#btn-print').addEventListener('click', () => { if (!printPreview(el.frame)) toast('이 화면에서는 인쇄할 수 없습니다. 저장한 파일을 열어 인쇄하세요'); });
 
+// HTML 코드 보기 — 미리보기와 원본 코드 전환
+const codeBtn = $('#btn-code');
+codeBtn.addEventListener('click', () => {
+  const on = codeBtn.getAttribute('aria-pressed') !== 'true';
+  codeBtn.setAttribute('aria-pressed', on);
+  codeBtn.textContent = on ? '미리보기로 보기' : 'HTML 코드 보기';
+  $('#code-box').hidden = !on;
+  el.frameBox.hidden = on;
+});
+$('#btn-code-copy').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(state.html); toast('코드를 복사했습니다'); }
+  catch { $('#code-view').select(); toast('코드를 길게 눌러 복사하세요'); }
+});
+
 // 저장 버튼(북마클릿)
+const src = $('#bm-source');
+if (src) src.textContent = decodeURIComponent(BOOKMARKLET.slice(11));
 const bm = $('#bm-link');
 bm.href = BOOKMARKLET;
 bm.addEventListener('click', e => { e.preventDefault(); toast('즐겨찾기에 추가한 뒤, 저장할 페이지에서 누르세요'); });

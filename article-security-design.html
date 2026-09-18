@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>담다의 보안 설계 – 문서가 서버로 가지 않는 이유 – 담다</title>
+<meta name="description" content="담다가 개인 문서를 보호하는 5가지 설계 원칙과 저장 버튼이 파일에서 제외하는 정보, 사용자가 지켜야 할 점을 설명합니다.">
+<link rel="canonical" href="https://transhtml.pages.dev/article-security-design">
+<meta property="og:type" content="article"><meta property="og:site_name" content="담다">
+<meta property="og:title" content="담다의 보안 설계 – 문서가 서버로 가지 않는 이유 – 담다"><meta property="og:description" content="담다가 개인 문서를 보호하는 5가지 설계 원칙과 저장 버튼이 파일에서 제외하는 정보, 사용자가 지켜야 할 점을 설명합니다.">
+<meta property="og:url" content="https://transhtml.pages.dev/article-security-design"><meta property="og:image" content="https://transhtml.pages.dev/og.png"><meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1b2433">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="/style.css">
+<script src="/ads.js" defer></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "담다의 보안 설계 – 문서가 서버로 가지 않는 이유", "description": "담다가 개인 문서를 보호하는 5가지 설계 원칙과 저장 버튼이 파일에서 제외하는 정보, 사용자가 지켜야 할 점을 설명합니다.", "inLanguage": "ko", "datePublished": "2026-09-18", "dateModified": "2026-09-18", "author": {"@type": "Organization", "name": "담다"}, "publisher": {"@type": "Organization", "name": "담다", "logo": {"@type": "ImageObject", "url": "https://transhtml.pages.dev/og.png"}}, "mainEntityOfPage": "https://transhtml.pages.dev/article-security-design", "image": "https://transhtml.pages.dev/og.png"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://transhtml.pages.dev/"}, {"@type": "ListItem", "position": 2, "name": "가이드", "item": "https://transhtml.pages.dev/articles"}, {"@type": "ListItem", "position": 3, "name": "담다의 보안 설계 – 문서가 서버로 가지 않는 이유", "item": "https://transhtml.pages.dev/article-security-design"}]}</script>
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+<a class="brand" href="/">담다<small>웹페이지 HTML 저장</small></a>
+<nav class="nav" aria-label="주요 메뉴"><a href="/">변환하기</a><a href="/guide">사용법</a><a href="/articles" aria-current="page">가이드</a><a href="/about">소개</a></nav></div></header>
+<main class="wrap">
+<article class="prose">
+<p class="crumb"><a href="/">홈</a> › <a href="/articles">가이드</a></p>
+<h1>담다의 보안 설계 – 문서가 서버로 가지 않는 이유</h1>
+<p class="updated">작성 2026.09.18 · 담다</p>
+<p>담다는 성적표나 신청 내역처럼 민감한 정보가 담긴 화면을 다룰 수 있는 도구입니다. 그래서 "편리한 기능"보다 "문서가 어디로 가는지"를 먼저 설계했습니다. 담다가 어떤 방식으로 여러분의 문서를 보호하는지 구체적으로 설명합니다.</p>
+<h2>원칙 1. 문서는 기기 밖으로 나가지 않는다</h2>
+<p>담다의 세 가지 기능 중 두 가지는 서버를 전혀 거치지 않습니다.</p>
+<ul>
+<li><b>붙여넣기·파일 변환</b>: 입력한 HTML은 여러분의 브라우저 안에서만 정리되고 미리보기로 표시됩니다. 서버로 전송되는 데이터가 없습니다.</li>
+<li><b>저장 버튼</b>: 보고 있는 페이지 안에서 실행되어 화면을 파일로 만들고, 기기의 다운로드 폴더에 바로 저장합니다. 담다 서버는 이 과정에 관여하지 않습니다.</li>
+</ul>
+<p>유일하게 서버를 쓰는 "주소로 가져오기"는 누구나 볼 수 있는 공개 페이지만 대상으로 합니다. 서버는 페이지를 받아 전달할 뿐 내용을 저장하지 않습니다.</p>
+<h2>원칙 2. 변환 화면에는 제3자 코드를 두지 않는다</h2>
+<p>웹페이지에 광고나 분석 도구 같은 외부 스크립트가 있으면, 그 스크립트는 같은 화면의 내용을 읽을 수 있습니다. 문서를 다루는 페이지에서는 이것 자체가 위험 요소입니다.</p>
+<p>그래서 담다는 문서를 다루는 첫 화면(변환하기)에 광고 스크립트를 넣지 않았습니다. 또한 브라우저 보안 정책(CSP)으로 담다 자체 코드 외의 스크립트가 실행되지 못하도록 막았습니다. 광고는 문서를 다루지 않는 가이드와 소개 페이지에만 표시됩니다.</p>
+<h2>원칙 3. 저장 파일에 비밀을 남기지 않는다</h2>
+<p>로그인된 화면에는 눈에 보이지 않는 정보도 들어 있습니다. 대표적인 것이 사이트가 요청을 검증하려고 숨겨 둔 보안 토큰입니다. 이런 값이 파일에 남은 채로 공유되면 원치 않는 정보가 함께 퍼질 수 있습니다.</p>
+<p>담다의 저장 버튼은 다음 항목을 파일에서 제외합니다.</p>
+<ul><li>비밀번호 입력칸의 값</li><li>숨겨진 입력값(hidden input)</li><li>보안 토큰이 담긴 메타 정보</li><li>원본 사이트의 스크립트</li></ul>
+<h2>원칙 4. 코드를 숨기지 않는다</h2>
+<p>저장 버튼은 즐겨찾기에 넣는 코드이기 때문에, 사용자가 직접 확인할 수 있어야 한다고 생각합니다. 담다는 변환하기 화면에서 저장 버튼 코드 전체를 공개합니다. 코드 안에 외부로 데이터를 보내는 명령(fetch, XMLHttpRequest, sendBeacon)이 없다는 것을 누구나 확인할 수 있습니다.</p>
+<h2>원칙 5. 서버가 악용되지 않게 한다</h2>
+<p>"주소로 가져오기" 서버는 담다 화면에서 보낸 요청만 처리하고, 짧은 시간에 너무 많은 요청을 보내면 잠시 차단합니다. 내부망 주소나 IP 주소를 이용한 우회 요청, 지나치게 큰 응답도 거부합니다. 담다가 다른 사이트를 공격하는 통로로 쓰이지 않도록 하기 위해서입니다.</p>
+<h2>담다가 하지 않는 것</h2>
+<ul><li>회원가입이나 로그인을 요구하지 않습니다.</li><li>다른 사이트의 아이디, 비밀번호, 인증서를 묻지 않습니다.</li><li>변환 결과를 서버나 브라우저 저장소에 남기지 않습니다.</li></ul>
+<h2>그래도 사용자가 지켜야 할 것</h2>
+<p>도구가 안전해도, 저장된 파일을 어떻게 다루는지는 사용자의 몫입니다. 저장 버튼은 공식 주소에서만 받고, 저장한 파일은 받는 사람을 확인한 뒤 공유하세요. 더 자세한 수칙은 <a href="/article-personal-docs-checklist">개인 서류 체크리스트</a>와 <a href="/article-bookmarklet-safety">북마클릿 안전 수칙</a>에 정리해 두었습니다.</p>
+
+<div class="ad-slot" aria-hidden="true"></div>
+<aside class="cta"><b>바로 해보기</b><p>휴대폰에서 웹페이지를 .html 파일로 저장해 보세요.</p><a class="btn btn--primary" href="/">담다로 변환하기</a></aside>
+<h2>다른 가이드</h2><ul><li><a href="/article-save-login-page">로그인이 필요한 페이지는 왜 주소로 저장이 안 될까</a></li><li><a href="/article-submission-checklist">웹페이지 파일 제출 전 체크리스트 5단계</a></li><li><a href="/article-save-webpage-mobile">휴대폰에서 웹페이지를 HTML 파일로 저장하는 3가지 방법</a></li><li><a href="/article-html-mhtml-pdf">HTML, MHTML, PDF 차이 – 웹페이지 저장 형식 고르는 법</a></li></ul>
+</article>
+</main>
+<footer class="site-footer"><div class="wrap">
+<nav aria-label="하단 메뉴"><a href="/about">소개</a><a href="/guide">사용법</a><a href="/articles">가이드</a><a href="/contact">문의</a><a href="/privacy">개인정보처리방침</a><a href="/terms">이용약관</a></nav>
+<p>공식 주소: <b>transhtml.pages.dev</b> · 저장 버튼 코드는 이 주소에서만 받으세요.</p>
+<p>© 2026 담다. 변환은 사용자의 브라우저 안에서 이루어지며, 변환한 문서는 서버에 저장되지 않습니다.</p>
+</div></footer>
+</body>
+</html>
