@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://transhtml.pages.dev/sitemap.xml
+Sitemap: https://transpage.pages.dev/sitemap.xml

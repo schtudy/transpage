@@ -9,7 +9,7 @@ functions/api/fetch.js  ← Create new file에서 경로째 입력
 1. 모든 HTML·contact: YOUR-EMAIL@gmail.com → 실제 이메일
 2. ads.js: ADSENSE_ID = 'ca-pub-...' (한 곳만 수정하면 전체 적용)
 3. ads.txt: pub-ID 입력 후 # 제거
-4. 도메인을 사면 transhtml.pages.dev → 새 도메인으로 전체 치환
+4. 도메인을 사면 transpage.pages.dev → 새 도메인으로 전체 치환
 
 ## 보안
 - GitHub·Cloudflare 2단계 인증 필수 (계정 탈취 = 저장 버튼 변조)
